@@ -1,38 +1,55 @@
 import { useState } from 'react';
-import { Line } from './ContactListItem.styled';
+import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { ButtonsBlock, Line } from './ContactListItem.styled';
 import {
   useDeleteContactMutation,
-  //   useUpdateContactMutation,
+  useUpdateContactMutation,
 } from 'redux/contactsSlice';
 import Button from 'components/Button';
 import Loader from 'components/Loader';
 import Modal from 'components/Modal';
-// import ContactForm from 'components/ContactForm';
 import ModalForm from 'components/ModalForm';
+import { CloseButton } from 'components/Button/Button.styled';
 
 const ContactListItem = ({ name, phone, id }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-  //   const [updateContact] = useUpdateContactMutation();
+  const [updateContact] = useUpdateContactMutation();
   const [showModal, setshowModal] = useState(false);
 
   const handleShowModal = () => {
     setshowModal(!showModal);
   };
-  //   console.log('~ updateContact', updateContact);
+
+  const handleUpdateContact = async fields => {
+    try {
+      await updateContact({ id, ...fields });
+      setshowModal(!showModal);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Line>
         {name}: <span>{phone}</span>
       </Line>
-      <div>
+      <ButtonsBlock>
         <Button click={() => handleShowModal()}>Edit</Button>
         <Button click={() => deleteContact(id)} isDeleting={isDeleting}>
           {isDeleting ? <Loader /> : 'Delete'}
         </Button>
-      </div>
+      </ButtonsBlock>
       {showModal && (
         <Modal onClose={handleShowModal}>
-          <ModalForm nameValue={name} phoneValue={phone} />
+          <CloseButton onClick={handleShowModal}>
+            <AiOutlineCloseCircle size={20} />
+          </CloseButton>
+          <ModalForm
+            nameValue={name}
+            phoneValue={phone}
+            onSubmit={handleUpdateContact}
+          />
         </Modal>
       )}
     </>

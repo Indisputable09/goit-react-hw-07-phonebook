@@ -15,3 +15,16 @@ export const ButtonStyled = styled.button`
     transform: scale(0.9);
   }
 `;
+
+export const CloseButton = styled(ButtonStyled)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border-radius: 50%; */
+`;

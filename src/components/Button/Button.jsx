@@ -12,7 +12,7 @@ const Button = ({
       type={type}
       onClick={click}
       disabled={isDeleting}
-      className={className}
+      // className={className}
     >
       {children}
     </ButtonStyled>

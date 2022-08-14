@@ -6,3 +6,8 @@ export const Line = styled.p`
   align-items: flex-start;
   gap: 5px;
 `;
+
+export const ButtonsBlock = styled.div`
+  display: flex;
+  gap: 10px;
+`;
