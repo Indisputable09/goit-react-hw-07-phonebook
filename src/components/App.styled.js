@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Loader from './Loader';
 
 export const Section = styled.div`
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
