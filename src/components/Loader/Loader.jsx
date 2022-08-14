@@ -1,7 +1,8 @@
-const { SyncLoader } = require('react-spinners');
+// const { SyncLoader } = require('react-spinners');
+import { SyncLoader } from 'react-spinners';
 
-const Loader = () => {
-  return <SyncLoader size={13} color="#609" />;
+const Loader = ({ size = 13 }) => {
+  return <SyncLoader size={size} color="#609" />;
 };
 
 export default Loader;

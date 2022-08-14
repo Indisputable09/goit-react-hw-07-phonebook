@@ -7,12 +7,14 @@ import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
 import ContactsSection from 'components/Section';
-import { Section, Title } from './App.styled';
+import { CenteredLoader, Section, Title } from './App.styled';
 import { filterChange, getFilterValue } from 'redux/filterSlice';
 import {
   useGetContactsQuery,
   useAddContactMutation,
 } from 'redux/contactsSlice';
+import Loader from './Loader';
+// import Loader from './Loader';
 
 export const App = () => {
   const filterValueReducer = useSelector(getFilterValue);
@@ -71,7 +73,7 @@ export const App = () => {
 
   const filteredContacts = createFilter();
 
-  return (
+  return contacts ? (
     <Section>
       <GlobalStyle />
       <div>
@@ -83,5 +85,9 @@ export const App = () => {
         <ContactList filter={filteredContacts} />
       </ContactsSection>
     </Section>
+  ) : (
+    <CenteredLoader>
+      <Loader size={50} />
+    </CenteredLoader>
   );
 };

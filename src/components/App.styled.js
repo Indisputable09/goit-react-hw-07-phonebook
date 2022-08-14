@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Loader from './Loader';
 
 export const Section = styled.div`
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -17,4 +18,11 @@ export const Section = styled.div`
 export const Title = styled.h1`
   font-size: 46px;
   padding-top: 20px;
+`;
+
+export const CenteredLoader = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
