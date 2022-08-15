@@ -11,7 +11,7 @@ const Button = ({ type = 'button', children, isDeleting, click }) => {
 
 Button.propTypes = {
   type: PropTypes.string,
-  children: PropTypes.string,
+  // children: PropTypes.string,
   isDeleting: PropTypes.bool,
   click: PropTypes.func,
 };
