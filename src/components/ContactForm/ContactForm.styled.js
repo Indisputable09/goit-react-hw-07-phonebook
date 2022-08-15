@@ -1,8 +1,8 @@
+import { Form, Field } from 'formik';
 import styled from 'styled-components';
-import { Field, Form } from 'formik';
 import Button from 'components/Button';
 
-export const FormBlock = styled(Form)`
+export const FormContainer = styled(Form)`
   width: 400px;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@ export const FormBlock = styled(Form)`
 `;
 
 export const Label = styled.label`
-  font-size: 20px;
+  font-size: 25px;
   margin-top: 10px;
   margin-bottom: 20px;
 `;
@@ -20,28 +20,28 @@ export const Input = styled(Field)`
   width: 100%;
   height: 35px;
   padding: 10px;
-  outline: orange;
-  border: 1px solid orange;
+  outline: none;
+  border: none;
   border-radius: 10px;
+
   :focus {
-    border: 2px solid orange;
+    border: 1px solid orange;
   }
 `;
 
-export const EditButton = styled(Button)`
+export const AddButton = styled(Button)`
   font-weight: 700;
   margin-top: 20px;
   margin-right: auto;
   margin-left: auto;
 
-  padding: 20px 70px;
-
   border-radius: 10px;
   background-color: #45f5e6;
+  border: none;
   transition: all 250ms linear;
+
   :hover,
   :focus {
-    /* background-color: #fa8cb8; */
-    /* transform: scale(1.1); */
+    transform: scale(1.1);
   }
 `;

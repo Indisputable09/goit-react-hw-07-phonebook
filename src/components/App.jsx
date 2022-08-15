@@ -14,6 +14,8 @@ import {
   useAddContactMutation,
 } from 'redux/contactsSlice';
 import Loader from './Loader';
+import { Slide, toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 // import Loader from './Loader';
 
 export const App = () => {
@@ -50,6 +52,7 @@ export const App = () => {
       return;
     }
     addContact(contact);
+    toast.success('Contact added successfully!');
     e.target.reset();
   };
 
@@ -76,6 +79,15 @@ export const App = () => {
   return contacts ? (
     <Section>
       <GlobalStyle />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        theme={'colored'}
+        transition={Slide}
+        closeOnClick
+      />
       <div>
         <Title>Phonebook</Title>
         <ContactForm onSubmit={handleSubmit} isPosting={isPosting} />

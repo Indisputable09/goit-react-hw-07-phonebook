@@ -1,14 +1,13 @@
-// import { useUpdateContactMutation } from 'redux/contactsSlice';
-import { Field, Form, Formik } from 'formik';
-import style from 'components/ContactForm/ContactForm.module.css';
+import { Formik } from 'formik';
 import {
   FormError,
   NAME_MATCH,
   SignupSchema,
 } from 'components/ContactForm/ContactForm';
-import Button from 'components/Button';
+import { EditButton, FormBlock, Input, Label } from './ModalForm.styled';
+import Loader from 'components/Loader';
 
-const ModalForm = ({ onSubmit, nameValue, phoneValue }) => {
+const ModalForm = ({ onSubmit, nameValue, phoneValue, isUpdaiting }) => {
   const handleSubmit = async (values, actions) => {
     await onSubmit(values);
     // actions.setSubmitting(false);
@@ -24,12 +23,9 @@ const ModalForm = ({ onSubmit, nameValue, phoneValue }) => {
       validationSchema={SignupSchema}
       onSubmit={handleSubmit}
     >
-      <Form className={style.form}>
-        <label className={style.label} htmlFor="contactName">
-          Name
-        </label>
-        <Field
-          className={style.input}
+      <FormBlock>
+        <Label htmlFor="contactName">Name</Label>
+        <Input
           id="contactName"
           type="text"
           name="name"
@@ -39,11 +35,8 @@ const ModalForm = ({ onSubmit, nameValue, phoneValue }) => {
           required
         />
         <FormError name="name" />
-        <label className={style.label} htmlFor="phone">
-          Number
-        </label>
-        <Field
-          className={style.input}
+        <Label htmlFor="phone">Number</Label>
+        <Input
           id="phone"
           type="tel"
           name="phone"
@@ -53,11 +46,10 @@ const ModalForm = ({ onSubmit, nameValue, phoneValue }) => {
           required
         />
         <FormError name="number" />
-        <Button className={style.button} type="submit">
-          {/* {isPosting ? <Loader /> : 'Add contact'} */}
-          Edit
-        </Button>
-      </Form>
+        <EditButton type="submit">
+          {isUpdaiting ? <Loader /> : 'Edit'}
+        </EditButton>
+      </FormBlock>
     </Formik>
   );
 };

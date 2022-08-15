@@ -10,7 +10,6 @@ export const ButtonStyled = styled.button`
 
   :hover,
   :focus {
-    /* background-color: #fa5c71; */
     background-color: ${p => p.theme.colors.orangered};
     transform: scale(0.9);
   }
@@ -18,8 +17,8 @@ export const ButtonStyled = styled.button`
 
 export const CloseButton = styled(ButtonStyled)`
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2%;
+  right: 2%;
   padding: 0;
   width: 30px;
   height: 30px;

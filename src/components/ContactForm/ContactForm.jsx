@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import style from './ContactForm.module.css';
 import Button from 'components/Button';
 import Loader from 'components/Loader';
+import { AddButton, FormContainer, Input, Label } from './ContactForm.styled';
 
 export const NAME_MATCH =
   "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
@@ -39,11 +40,9 @@ const ContactForm = ({ onSubmit, isPosting }) => {
       }}
       validationSchema={SignupSchema}
     >
-      <Form className={style.form} onSubmit={onSubmit}>
-        <label className={style.label} htmlFor="name">
-          Name
-        </label>
-        <Field
+      <FormContainer onSubmit={onSubmit}>
+        <Label htmlFor="name">Name</Label>
+        <Input
           className={style.input}
           id="name"
           type="text"
@@ -53,11 +52,8 @@ const ContactForm = ({ onSubmit, isPosting }) => {
           required
         />
         <FormError name="name" />
-        <label className={style.label} htmlFor="number">
-          Number
-        </label>
-        <Field
-          className={style.input}
+        <Label htmlFor="number">Number</Label>
+        <Input
           id="number"
           type="tel"
           name="phone"
@@ -66,10 +62,10 @@ const ContactForm = ({ onSubmit, isPosting }) => {
           required
         />
         <FormError name="number" />
-        <Button className={style.button} type="submit">
+        <AddButton type="submit">
           {isPosting ? <Loader /> : 'Add contact'}
-        </Button>
-      </Form>
+        </AddButton>
+      </FormContainer>
     </Formik>
   );
 };

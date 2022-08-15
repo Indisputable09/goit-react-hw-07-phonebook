@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { toast } from 'react-toastify';
 import { ButtonsBlock, Line } from './ContactListItem.styled';
 import {
   useDeleteContactMutation,
@@ -13,17 +14,28 @@ import { CloseButton } from 'components/Button/Button.styled';
 
 const ContactListItem = ({ name, phone, id }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
-  const [updateContact] = useUpdateContactMutation();
-  const [showModal, setshowModal] = useState(false);
+  const [updateContact, { isLoading: isUpdaiting }] =
+    useUpdateContactMutation();
+  const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => {
-    setshowModal(!showModal);
+    setShowModal(!showModal);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteContact(id);
+      toast.success('Contact deleted successfully!');
+    } catch (error) {
+      toast.error('Something went wrong. Try again.');
+    }
   };
 
   const handleUpdateContact = async fields => {
     try {
       await updateContact({ id, ...fields });
-      setshowModal(!showModal);
+      setShowModal(!showModal);
+      toast.success('Contact edited successfully!');
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +48,7 @@ const ContactListItem = ({ name, phone, id }) => {
       </Line>
       <ButtonsBlock>
         <Button click={() => handleShowModal()}>Edit</Button>
-        <Button click={() => deleteContact(id)} isDeleting={isDeleting}>
+        <Button click={handleDelete} isDeleting={isDeleting}>
           {isDeleting ? <Loader /> : 'Delete'}
         </Button>
       </ButtonsBlock>
@@ -49,6 +61,7 @@ const ContactListItem = ({ name, phone, id }) => {
             nameValue={name}
             phoneValue={phone}
             onSubmit={handleUpdateContact}
+            isUpdaiting={isUpdaiting}
           />
         </Modal>
       )}

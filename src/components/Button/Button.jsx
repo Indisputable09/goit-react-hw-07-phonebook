@@ -5,14 +5,14 @@ const Button = ({
   children,
   isDeleting,
   click,
-  className,
+  // className,
 }) => {
   return (
     <ButtonStyled
       type={type}
       onClick={click}
       disabled={isDeleting}
-      className={className}
+      // className={className}
     >
       {children}
     </ButtonStyled>
