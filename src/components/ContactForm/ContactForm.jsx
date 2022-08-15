@@ -1,9 +1,8 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import { Notify } from 'notiflix';
 import PropTypes from 'prop-types';
 import style from './ContactForm.module.css';
-import Button from 'components/Button';
 import Loader from 'components/Loader';
 import { AddButton, FormContainer, Input, Label } from './ContactForm.styled';
 
