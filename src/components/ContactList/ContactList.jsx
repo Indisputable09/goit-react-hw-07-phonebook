@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { List, ListItem } from './ContactList.styled';
-// import { useDeleteContactMutation } from 'redux/contactsSlice';
 import ContactListItem from 'components/ContactListItem';
 
 const ContactList = ({ filter }) => {

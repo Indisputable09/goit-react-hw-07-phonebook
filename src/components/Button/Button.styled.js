@@ -27,3 +27,33 @@ export const CloseButton = styled(ButtonStyled)`
   align-items: center;
   /* border-radius: 50%; */
 `;
+
+export const AddButton = styled(ButtonStyled)`
+  font-weight: 700;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+
+  border-radius: 10px;
+  background-color: #45f5e6;
+  border: none;
+  transition: all 250ms linear;
+
+  :hover,
+  :focus {
+    transform: scale(1.1);
+  }
+`;
+
+export const EditButton = styled(ButtonStyled)`
+  font-weight: 700;
+  margin-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: 20px 70px;
+
+  border-radius: 10px;
+  background-color: #45f5e6;
+  transition: all 250ms linear;
+`;

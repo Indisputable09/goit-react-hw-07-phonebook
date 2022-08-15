@@ -1,4 +1,3 @@
-// const { SyncLoader } = require('react-spinners');
 import { SyncLoader } from 'react-spinners';
 
 const Loader = ({ size = 13 }) => {

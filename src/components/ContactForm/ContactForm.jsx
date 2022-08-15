@@ -2,9 +2,9 @@ import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
 import { Notify } from 'notiflix';
 import PropTypes from 'prop-types';
-import style from './ContactForm.module.css';
 import Loader from 'components/Loader';
-import { AddButton, FormContainer, Input, Label } from './ContactForm.styled';
+import { FormContainer, Input, Label } from './ContactForm.styled';
+import { AddButton } from 'components/Button/Button.styled';
 
 export const NAME_MATCH =
   "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
@@ -42,7 +42,6 @@ const ContactForm = ({ onSubmit, isPosting }) => {
       <FormContainer onSubmit={onSubmit}>
         <Label htmlFor="name">Name</Label>
         <Input
-          className={style.input}
           id="name"
           type="text"
           name="name"
@@ -71,6 +70,7 @@ const ContactForm = ({ onSubmit, isPosting }) => {
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  isPosting: PropTypes.bool,
 };
 
 export default ContactForm;

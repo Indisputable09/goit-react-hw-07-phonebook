@@ -1,8 +1,10 @@
-import { GlobalStyle } from 'components/GlobalStyle';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import Swal from 'sweetalert2';
+import { Slide, toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { GlobalStyle } from 'components/GlobalStyle';
 import ContactForm from 'components/ContactForm';
 import Filter from 'components/Filter';
 import ContactList from 'components/ContactList';
@@ -14,9 +16,6 @@ import {
   useAddContactMutation,
 } from 'redux/contactsSlice';
 import Loader from './Loader';
-import { Slide, toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
-// import Loader from './Loader';
 
 export const App = () => {
   const filterValueReducer = useSelector(getFilterValue);
@@ -25,35 +24,39 @@ export const App = () => {
   const [addContact, { isLoading: isPosting }] = useAddContactMutation();
   const { data: contacts } = useGetContactsQuery();
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const phone = e.target.number.value;
-    const contactsNames = contacts.find(contact => contact.name === name);
-    const contactsNumbers = contacts.find(contact => contact.phone === phone);
-    const contact = { id: nanoid(), name, phone };
+  const handleSubmit = async e => {
+    try {
+      e.preventDefault();
+      const name = e.target.name.value;
+      const phone = e.target.number.value;
+      const contactsNames = contacts.find(contact => contact.name === name);
+      const contactsNumbers = contacts.find(contact => contact.phone === phone);
+      const contact = { id: nanoid(), name, phone };
 
-    if (contactsNames) {
-      Swal.fire({
-        title: 'Error!',
-        text: `Sorry, ${name} is already in your contacts`,
-        icon: 'error',
-        confirmButtonText: 'Got it',
-      });
-      return;
+      if (contactsNames) {
+        Swal.fire({
+          title: 'Error!',
+          text: `Sorry, ${name} is already in your contacts`,
+          icon: 'error',
+          confirmButtonText: 'Got it',
+        });
+        return;
+      }
+      if (contactsNumbers) {
+        Swal.fire({
+          title: 'Error!',
+          text: `Sorry, ${phone} is already in your contacts`,
+          icon: 'error',
+          confirmButtonText: 'Got it',
+        });
+        return;
+      }
+      await addContact(contact);
+      toast.success('Contact added successfully!');
+      e.target.reset();
+    } catch (error) {
+      console.log(error);
     }
-    if (contactsNumbers) {
-      Swal.fire({
-        title: 'Error!',
-        text: `Sorry, ${phone} is already in your contacts`,
-        icon: 'error',
-        confirmButtonText: 'Got it',
-      });
-      return;
-    }
-    addContact(contact);
-    toast.success('Contact added successfully!');
-    e.target.reset();
   };
 
   const handleChangeFilter = e => {

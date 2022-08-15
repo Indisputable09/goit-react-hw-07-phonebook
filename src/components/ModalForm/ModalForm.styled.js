@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Field, Form } from 'formik';
-import Button from 'components/Button';
 
 export const FormBlock = styled(Form)`
   width: 400px;
@@ -25,23 +24,5 @@ export const Input = styled(Field)`
   border-radius: 10px;
   :focus {
     border: 2px solid orange;
-  }
-`;
-
-export const EditButton = styled(Button)`
-  font-weight: 700;
-  margin-top: 20px;
-  margin-right: auto;
-  margin-left: auto;
-
-  padding: 20px 70px;
-
-  border-radius: 10px;
-  background-color: #45f5e6;
-  transition: all 250ms linear;
-  :hover,
-  :focus {
-    /* background-color: #fa8cb8; */
-    /* transform: scale(1.1); */
   }
 `;
