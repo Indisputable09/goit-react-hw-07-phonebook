@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { toast } from 'react-toastify';
@@ -19,12 +19,12 @@ const ContactListItem = ({ name, phone, id }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   const [updateContact, { isLoading: isUpdaiting }] =
     useUpdateContactMutation();
-  const modalShow = useSelector(getShowModal);
+  const showModal = useSelector(getShowModal);
   const dispatch = useDispatch();
-  const [showModal, setShowModal] = useState(modalShow);
+  // const [showModal, setShowModal] = useState(modalShow);
 
   const handleShowModal = () => {
-    setShowModal(!showModal);
+    // setShowModal(!showModal);
     dispatch(showModalChange());
   };
 
@@ -40,7 +40,7 @@ const ContactListItem = ({ name, phone, id }) => {
   const handleUpdateContact = async fields => {
     try {
       await updateContact({ id, ...fields });
-      setShowModal(!showModal);
+      // setShowModal(!showModal);
       dispatch(showModalChange());
       toast.success('Contact edited successfully!');
     } catch (error) {

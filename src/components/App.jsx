@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { nanoid } from 'nanoid';
 import Swal from 'sweetalert2';
@@ -18,9 +18,9 @@ import {
 import Loader from './Loader';
 
 export const App = () => {
-  const filterValueReducer = useSelector(getFilterValue);
+  const filter = useSelector(getFilterValue);
   const dispatch = useDispatch();
-  const [filter, setFilter] = useState(filterValueReducer);
+  // const [filter, setFilter] = useState(filterValueReducer);
   const [addContact, { isLoading: isPosting }] = useAddContactMutation();
   const { data: contacts } = useGetContactsQuery();
 
@@ -56,13 +56,14 @@ export const App = () => {
       e.target.reset();
     } catch (error) {
       console.log(error);
+      toast.error('Something went wrong. Try again.');
     }
   };
 
   const handleChangeFilter = e => {
     const inputValue = e.target.value;
     dispatch(filterChange(inputValue));
-    setFilter(inputValue);
+    // setFilter(inputValue);
   };
 
   const createFilter = () => {
